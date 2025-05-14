@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zan9ati – لنحسن مدينتنا معا</title>
+  <style>
+    :root {
+      --primary-color: #00796B;
+      --accent-color: #00BFA5;
+      --bg-gradient: linear-gradient(to bottom right, #f0fdfa, #e0f7fa, #d0f0ec);
+      --card-gradient: linear-gradient(135deg, #ffffff, #e0f2f1);
+      --text-color: #1a1a1a;
+      --muted-color: #555;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, #e0f7fa, #fefefe, #ffffff);
+      color: var(--text-color);
+      line-height: 1.7;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #141E30, #243B55);
+      color: white;
+      padding: 2rem 1rem 4rem 1rem;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('https://www.mifuguemiraison.com/wp-content/uploads/2019/05/port-tanger-maroc-900x600.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    header * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      display: block;
+      width: 80px;
+      margin: 0 auto 1rem auto;
+    }
+
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #2af598, #009efd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .lang-button {
+      display: block;
+      margin: 0 auto;
+      background: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lang-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .lang-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .lang-button span {
+      padding: 0 4px;
+    }
+
+    .lang-button .active-lang {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .lang-button .inactive-lang {
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    section {
+      margin: 1.5rem auto;
+      max-width: 90%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      border-radius: 24px;
+      background: var(--card-gradient);
+      padding: 2rem 1.5rem;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    section p {
+      font-size: 1.15rem;
+      color: var(--muted-color);
+      margin-bottom: 2rem;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature {
+      padding: 1.5rem;
+      background: var(--card-gradient);
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .feature h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #004D40;
+    }
+
+    .cta {
+      margin-top: 3rem;
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .cta button {
+      display: block;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #00BFA5, #00796B);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #00796B, #00BFA5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+      color: #eee;
+      background: #004D40;
+      margin-top: 3rem;
+    }
+
+    .ar {
+      direction: rtl;
+      font-family: 'Amiri', serif;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Styles pour mobile et responsive */
+    @media (min-width: 768px) {
+      header {
+        padding: 3rem 2rem 6rem 2rem;
+      }
+      
+      header h1 {
+        font-size: 4rem;
+      }
+      
+      header p {
+        font-size: 1.5rem;
+      }
+      
+      .logo {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        margin: 0;
+      }
+      
+      section {
+        max-width: 950px;
+        padding: 3rem 2rem;
+      }
+      
+      .features {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .feature {
+        flex: 1 1 30%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo V1.png" alt="Logo Zan9ati" class="logo">
+    <h1>Zan9ati</h1>
+    <p id="tagline">لنحسن مدينتنا معا – Améliorons notre ville ensemble</p>
+    <button id="lang-toggle-btn" class="lang-button">
+      <span id="lang-ar" class="inactive-lang">العربية</span> | <span id="lang-fr" class="active-lang">Français</span>
+    </button>
+  </header>
+
+  <section id="fr">
+    <h2>Une application citoyenne simple, utile, engagée.</h2>
+    <p>L'idée de Zan9ati est née des publications Facebook de mon père. À chaque incivilité dans la rue – voiture sur le trottoir, lampadaire éteint, déchets abandonnés – il partageait une photo, mais sans effet concret. Zan9ati transforme ces constats en actions utiles.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span>👀</span>
+        <h3>Je vois un problème</h3>
+        <p>Une incivilité dans la rue : stationnement, déchets, éclairage...</p>
+      </div>
+      <div class="feature">
+        <span>📸</span>
+        <h3>Je le signale</h3>
+        <p>Photo + description + géolocalisation en quelques secondes.</p>
+      </div>
+      <div class="feature">
+        <span>🗺️</span>
+        <h3>Je le rends visible</h3>
+        <p>Le signalement est publié sur une carte en temps réel.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>Lancement été 2025 – Soyez les premiers informés</p>
+      <button onclick="window.location.href='mailto:contact@zan9ati.com'">Contactez-nous</button>
+    </div>
+  </section>
+
+  <section id="ar" class="hidden ar">
+    <h2>تطبيق مواطن بسيط، مفيد و ملتزم</h2>
+    <p>ولِدت فكرة زنقتي من منشورات والدي على فيسبوك. عند كل مخالفة في الشارع – سيارة مركونة على الرصيف، مصباح مطفأ، نفايات مرمية – كان يلتقط صورة وينشرها، لكنها لم تؤثر. زنقتي تحول هذه الملاحظات إلى إشعارات مفيدة.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span>👀</span>
+        <h3>ألاحظ المشكلة</h3>
+        <p>مخالفة في الشارع: وقوف، نفايات، إنارة...</p>
+      </div>
+      <div class="feature">
+        <span>📸</span>
+        <h3>أقوم بالتبليغ</h3>
+        <p>صورة + وصف + تحديد الموقع في ثوانٍ.</p>
+      </div>
+      <div class="feature">
+        <span>🗺️</span>
+        <h3>أجعلها مرئية</h3>
+        <p>يُعرض التبليغ على خريطة تفاعلية فورية.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>الإطلاق صيف 2025 – كن أول من يعلم</p>
+      <button onclick="window.location.href='mailto:contact@zan9ati.com'">تواصل معنا</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Zan9ati – Application citoyenne en cours de développement.</p>
+  </footer>
+
+  <script>
+    // Variable pour stocker l'état de la langue actuelle
+    let currentLang = 'fr';
+    
+    // Fonction pour changer de langue
+    function toggleLanguage() {
+      // Récupération des éléments du DOM
+      const frSection = document.getElementById('fr');
+      const arSection = document.getElementById('ar');
+      const tagline = document.getElementById('tagline');
+      const langFr = document.getElementById('lang-fr');
+      const langAr = document.getElementById('lang-ar');
+      
+      // Changement de langue en fonction de l'état actuel
+      if (currentLang === 'fr') {
+        // Passage à l'arabe
+        frSection.classList.add('hidden');
+        arSection.classList.remove('hidden');
+        tagline.innerText = 'لنحسن مدينتنا معا';
+        
+        // Mise à jour visuelle des boutons
+        langFr.classList.remove('active-lang');
+        langFr.classList.add('inactive-lang');
+        langAr.classList.add('active-lang');
+        langAr.classList.remove('inactive-lang');
+        
+        // Mise à jour de l'état
+        currentLang = 'ar';
+        console.log('Langue changée vers arabe');
+      } else {
+        // Passage au français
+        arSection.classList.add('hidden');
+        frSection.classList.remove('hidden');
+        tagline.innerText = 'لنحسن مدينتنا معا – Améliorons notre ville ensemble';
+        
+        // Mise à jour visuelle des boutons
+        langAr.classList.remove('active-lang');
+        langAr.classList.add('inactive-lang');
+        langFr.classList.add('active-lang');
+        langFr.classList.remove('inactive-lang');
+        
+        // Mise à jour de l'état
+        currentLang = 'fr';
+        console.log('Langue changée vers français');
+      }
+    }
+    
+    // Ajout de l'événement après le chargement complet de la page
+    document.addEventListener('DOMContentLoaded', function() {
+      const langButton = document.getElementById('lang-toggle-btn');
+      
+      // Vérification que le bouton existe
+      if (langButton) {
+        // Ajout de l'événement de clic avec gestion directe
+        langButton.addEventListener('click', function(event) {
+          event.preventDefault(); // Empêche tout comportement par défaut
+          console.log('Bouton de langue cliqué');
+          toggleLanguage();
+        });
+        
+        console.log('Événement de clic ajouté au bouton de langue');
+      } else {
+        console.error('Bouton de langue non trouvé dans le DOM');
+      }
+    });
+  </script>
+</body>
+</html>

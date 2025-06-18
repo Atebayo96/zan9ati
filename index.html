@@ -9,13 +9,15 @@
   <title>Madinatii – لنحسن مدينتنا معا</title>
   <style>
     :root {
-      --primary-color: #0D47A1; /* Bleu urbain, plus moderne */
-      --accent-color: #00BFA5;
-      --bg-gradient: linear-gradient(135deg, #e3f0ff 0%, #f8fcff 100%);
-      --card-gradient: linear-gradient(135deg, #ffffff 60%, #e3f0ff 100%);
+      /* Palette Maroc : Rouge, Vert, Blanc, Doré subtil */
+      --primary-color: #C1272D; /* Rouge marocain, inspiré du drapeau */
+      --accent-color: #007A3D;  /* Vert marocain, inspiré du drapeau */
+      --gold-color: #C9B037;    /* Doré subtil pour les détails */
+      --bg-gradient: linear-gradient(135deg, #fff 0%, #f8f8f8 100%); /* Fond très clair, sobre */
+      --card-gradient: linear-gradient(135deg, #fff 70%, #f3f3f3 100%);
       --text-color: #1a1a1a;
-      --muted-color: #4a4a4a;
-      --shadow: 0 8px 32px rgba(13, 71, 161, 0.08);
+      --muted-color: #555;
+      --shadow: 0 8px 32px rgba(193, 39, 45, 0.08); /* ombre rouge très légère */
     }
 
     * {
@@ -35,7 +37,8 @@
     header {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #0D47A1 60%, #00BFA5 100%);
+      /* Dégradé rouge-vert, très doux, pour rappeler le drapeau marocain */
+      background: linear-gradient(135deg, #C1272D 60%, #007A3D 100%);
       color: white;
       padding: 1.2rem 0.5rem 2rem 0.5rem;
       box-shadow: var(--shadow);
@@ -64,19 +67,23 @@
       width: 70px;
       margin: 0 auto 0.3rem auto;
       display: inline-block;
-      filter: drop-shadow(0 4px 16px rgba(13,71,161,0.10));
+      filter: drop-shadow(0 4px 16px rgba(193,39,45,0.10));
     }
 
     h1 {
       font-size: 2.1rem;
       margin-bottom: 0.3rem;
       text-align: center;
+      color: #fff;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
     }
 
     #tagline {
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
       text-align: center;
+      color: #fff;
     }
 
     .lang-button {
@@ -125,6 +132,18 @@
       right: 1.2rem;
       margin: 0;
       z-index: 10;
+      background: #fff;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      border-radius: 10px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(193,39,45,0.08);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-button.lang-absolute:hover {
+      background: var(--primary-color);
+      color: #fff;
     }
 
     section {
@@ -159,27 +178,28 @@
       padding: 1.7rem 1.2rem;
       background: #fff;
       border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(13,71,161,0.06);
+      box-shadow: 0 4px 16px rgba(193,39,45,0.06);
       transition: all 0.3s cubic-bezier(.4,2,.6,1);
-      border: 1px solid #e3f0ff;
+      border: 1px solid #f3f3f3;
     }
 
     .feature:hover {
       transform: translateY(-7px) scale(1.03);
-      box-shadow: 0 12px 32px rgba(0,191,165,0.10);
+      box-shadow: 0 12px 32px rgba(0,122,61,0.10);
+      border-color: var(--accent-color);
     }
 
     .feature span {
       font-size: 2.2rem;
       display: block;
       margin-bottom: 1rem;
-      color: var(--primary-color);
+      color: var(--accent-color);
     }
 
     .feature h3 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
-      color: #0D47A1;
+      color: var(--primary-color);
     }
 
     .cta {
@@ -195,7 +215,7 @@
     .cta button {
       display: block;
       margin: 0 auto;
-      background: linear-gradient(135deg, #00BFA5, #0D47A1);
+      background: linear-gradient(135deg, #C1272D, #007A3D);
       color: white;
       border: none;
       padding: 1.1rem 2.2rem;
@@ -204,24 +224,35 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       font-weight: 600;
-      box-shadow: 0 4px 16px rgba(13,71,161,0.10);
+      box-shadow: 0 4px 16px rgba(193,39,45,0.10);
     }
 
     .cta button:hover {
       transform: translateY(-3px) scale(1.04);
-      background: linear-gradient(135deg, #0D47A1, #00BFA5);
+      background: linear-gradient(135deg, #007A3D, #C1272D);
     }
 
     footer {
       text-align: center;
       padding: 2.2rem 1rem;
       font-size: 1.05rem;
-      color: #f8fcff;
-      background: #0D47A1;
+      color: #fff;
+      background: var(--primary-color);
       margin-top: 3rem;
       border-top-left-radius: 24px;
       border-top-right-radius: 24px;
-      box-shadow: 0 -4px 16px rgba(13,71,161,0.08);
+      box-shadow: 0 -4px 16px rgba(193,39,45,0.08);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--gold-color);
     }
 
     .ar {

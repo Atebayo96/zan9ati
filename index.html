@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madinatii – لنحسن مدينتنا معا</title>
+  <style>
+    :root {
+      --primary-color: #0D47A1; /* Bleu urbain, plus moderne */
+      --accent-color: #00BFA5;
+      --bg-gradient: linear-gradient(135deg, #e3f0ff 0%, #f8fcff 100%);
+      --card-gradient: linear-gradient(135deg, #ffffff 60%, #e3f0ff 100%);
+      --text-color: #1a1a1a;
+      --muted-color: #4a4a4a;
+      --shadow: 0 8px 32px rgba(13, 71, 161, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0D47A1 60%, #00BFA5 100%);
+      color: white;
+      padding: 1.2rem 0.5rem 2rem 0.5rem;
+      box-shadow: var(--shadow);
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      text-align: center;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('https://www.mifuguemiraison.com/wp-content/uploads/2019/05/port-tanger-maroc-900x600.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    header * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 70px;
+      margin: 0 auto 0.3rem auto;
+      display: inline-block;
+      filter: drop-shadow(0 4px 16px rgba(13,71,161,0.10));
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    #tagline {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .lang-button {
+      display: block;
+      margin: 0 auto;
+      background: #f8fcff;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 0.7rem 1.7rem;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(13,71,161,0.08);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .lang-button:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: #e3f0ff;
+      box-shadow: 0 8px 24px rgba(13,71,161,0.12);
+    }
+
+    .lang-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .lang-button span {
+      padding: 0 4px;
+    }
+
+    .lang-button .active-lang {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .lang-button .inactive-lang {
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    .lang-button.lang-absolute {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      margin: 0;
+      z-index: 10;
+    }
+
+    section {
+      margin: 2.5rem auto;
+      max-width: 95%;
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      background: var(--card-gradient);
+      padding: 2.5rem 1.5rem;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    section p {
+      font-size: 1.18rem;
+      color: var(--muted-color);
+      margin-bottom: 2rem;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature {
+      padding: 1.7rem 1.2rem;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(13,71,161,0.06);
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+      border: 1px solid #e3f0ff;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,191,165,0.10);
+    }
+
+    .feature span {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .feature h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #0D47A1;
+    }
+
+    .cta {
+      margin-top: 3rem;
+    }
+
+    .cta p {
+      font-size: 1.22rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .cta button {
+      display: block;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #00BFA5, #0D47A1);
+      color: white;
+      border: none;
+      padding: 1.1rem 2.2rem;
+      border-radius: 14px;
+      font-size: 1.13rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(13,71,161,0.10);
+    }
+
+    .cta button:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: linear-gradient(135deg, #0D47A1, #00BFA5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.2rem 1rem;
+      font-size: 1.05rem;
+      color: #f8fcff;
+      background: #0D47A1;
+      margin-top: 3rem;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      box-shadow: 0 -4px 16px rgba(13,71,161,0.08);
+    }
+
+    .ar {
+      direction: rtl;
+      font-family: 'Amiri', serif;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Styles pour mobile et responsive */
+    @media (min-width: 768px) {
+      header {
+        padding: 3rem 2rem 6rem 2rem;
+      }
+      
+      header h1 {
+        font-size: 4rem;
+      }
+      
+      header p {
+        font-size: 1.5rem;
+      }
+      
+      .logo {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        margin: 0;
+      }
+      
+      section {
+        max-width: 950px;
+        padding: 3rem 2rem;
+      }
+      
+      .features {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .feature {
+        flex: 1 1 30%;
+      }
+    }
+
+    /* Header layout modernisé */
+    .header-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 48px;
+      margin-bottom: 0.5rem;
+    }
+    .logo-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 0;
+    }
+    .lang-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0;
+      z-index: 10;
+    }
+    @media (max-width: 600px) {
+      .logo {
+        width: 48px;
+      }
+      .lang-absolute {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1rem;
+        padding: 0.5rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="lang-toggle-btn" class="lang-button lang-absolute">
+      <span id="lang-ar" class="inactive-lang">العربية</span> | <span id="lang-fr" class="active-lang">Français</span>
+    </button>
+    <img src="logo V1.png" alt="Logo Madinatii" class="logo">
+    <h1>Madinatii</h1>
+    <p id="tagline">لنحسن مدينتنا معا – Améliorons notre ville ensemble</p>
+  </header>
+
+  <section id="fr">
+    <h2>Une application citoyenne simple, utile, engagée.</h2>
+    <p>L'idée de Madinatii est née des publications Facebook de mon père. À chaque incivilité dans la rue – voiture sur le trottoir, lampadaire éteint, déchets abandonnés – il partageait une photo, mais sans effet concret. Madinatii transforme ces constats en actions utiles.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span>👀</span>
+        <h3>Je vois un problème</h3>
+        <p>Une incivilité dans la rue : stationnement, déchets, éclairage...</p>
+      </div>
+      <div class="feature">
+        <span>📸</span>
+        <h3>Je le signale</h3>
+        <p>Photo + description + géolocalisation en quelques secondes.</p>
+      </div>
+      <div class="feature">
+        <span>🗺️</span>
+        <h3>Je le rends visible</h3>
+        <p>Le signalement est publié sur une carte en temps réel.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>Lancement été 2025 – Soyez les premiers informés</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com'">Contactez-nous</button>
+    </div>
+  </section>
+
+  <section id="ar" class="hidden ar">
+    <h2>تطبيق مواطن بسيط، مفيد و ملتزم</h2>
+    <p>ولِدت فكرة مدينتي من منشورات والدي على فيسبوك. عند كل مخالفة في الشارع – سيارة مركونة على الرصيف، مصباح مطفأ، نفايات مرمية – كان يلتقط صورة وينشرها، لكنها لم تؤثر. مدينتي تحول هذه الملاحظات إلى إشعارات مفيدة.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span>��</span>
+        <h3>ألاحظ المشكلة</h3>
+        <p>مخالفة في الشارع: وقوف، نفايات، إنارة...</p>
+      </div>
+      <div class="feature">
+        <span>📸</span>
+        <h3>أقوم بالتبليغ</h3>
+        <p>صورة + وصف + تحديد الموقع في ثوانٍ.</p>
+      </div>
+      <div class="feature">
+        <span>🗺️</span>
+        <h3>أجعلها مرئية</h3>
+        <p>يُعرض التبليغ على خريطة تفاعلية فورية.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>الإطلاق صيف 2025 – كن أول من يعلم</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com'">تواصل معنا</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Madinatii – Application citoyenne en cours de développement.</p>
+    <nav style="margin-top:1rem;">
+      <a href="confidentialite.html" style="color:#f8fcff;text-decoration:underline;margin-right:1.5rem;">Règles de confidentialité</a>
+      <a href="conditions.html" style="color:#f8fcff;text-decoration:underline;margin-right:1.5rem;">Conditions d'utilisation</a>
+      <a href="contact.html" style="color:#f8fcff;text-decoration:underline;">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    // Variable pour stocker l'état de la langue actuelle
+    let currentLang = 'fr';
+    
+    // Fonction pour changer de langue
+    function toggleLanguage() {
+      // Récupération des éléments du DOM
+      const frSection = document.getElementById('fr');
+      const arSection = document.getElementById('ar');
+      const tagline = document.getElementById('tagline');
+      const langFr = document.getElementById('lang-fr');
+      const langAr = document.getElementById('lang-ar');
+      
+      // Changement de langue en fonction de l'état actuel
+      if (currentLang === 'fr') {
+        // Passage à l'arabe
+        frSection.classList.add('hidden');
+        arSection.classList.remove('hidden');
+        tagline.innerText = 'لنحسن مدينتنا معا';
+        
+        // Mise à jour visuelle des boutons
+        langFr.classList.remove('active-lang');
+        langFr.classList.add('inactive-lang');
+        langAr.classList.add('active-lang');
+        langAr.classList.remove('inactive-lang');
+        
+        // Mise à jour de l'état
+        currentLang = 'ar';
+        console.log('Langue changée vers arabe');
+      } else {
+        // Passage au français
+        arSection.classList.add('hidden');
+        frSection.classList.remove('hidden');
+        tagline.innerText = 'لنحسن مدينتنا معا – Améliorons notre ville ensemble';
+        
+        // Mise à jour visuelle des boutons
+        langAr.classList.remove('active-lang');
+        langAr.classList.add('inactive-lang');
+        langFr.classList.add('active-lang');
+        langFr.classList.remove('inactive-lang');
+        
+        // Mise à jour de l'état
+        currentLang = 'fr';
+        console.log('Langue changée vers français');
+      }
+    }
+    
+    // Ajout de l'événement après le chargement complet de la page
+    document.addEventListener('DOMContentLoaded', function() {
+      const langButton = document.getElementById('lang-toggle-btn');
+      
+      // Vérification que le bouton existe
+      if (langButton) {
+        // Ajout de l'événement de clic avec gestion directe
+        langButton.addEventListener('click', function(event) {
+          event.preventDefault(); // Empêche tout comportement par défaut
+          console.log('Bouton de langue cliqué');
+          toggleLanguage();
+        });
+        
+        console.log('Événement de clic ajouté au bouton de langue');
+      } else {
+        console.error('Bouton de langue non trouvé dans le DOM');
+      }
+    });
+  </script>
+</body>
+</html>

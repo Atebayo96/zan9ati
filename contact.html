@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Madinatii</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #e3f0ff 0%, #f8fcff 100%); color: #1a1a1a; margin: 0; }
+    .container { max-width: 700px; margin: 3rem auto; background: #fff; border-radius: 24px; box-shadow: 0 8px 32px rgba(13, 71, 161, 0.08); padding: 2.5rem 2rem; }
+    h1 { color: #0D47A1; font-size: 2.2rem; margin-bottom: 1.2rem; }
+    p { color: #444; line-height: 1.7; }
+    form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    label { font-weight: 600; color: #0D47A1; }
+    input, textarea { padding: 0.8rem; border-radius: 10px; border: 1px solid #e3f0ff; font-size: 1rem; }
+    textarea { min-height: 100px; resize: vertical; }
+    button { background: linear-gradient(135deg, #00BFA5, #0D47A1); color: #fff; border: none; padding: 1rem 2rem; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: linear-gradient(135deg, #0D47A1, #00BFA5); }
+    .mailto { display: block; margin-top: 2rem; color: #0D47A1; text-decoration: underline; font-weight: 600; }
+    .back { display: inline-block; margin-top: 2.5rem; background: #0D47A1; color: #fff; padding: 0.7rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; }
+    .back:hover { background: #00BFA5; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact</h1>
+    <p>Une question, une suggestion ou envie de rejoindre le projet ? Écrivez-nous via ce formulaire ou directement par email.</p>
+    <form onsubmit="window.location.href='mailto:contactmadinatii@gmail.com?subject=Contact%20depuis%20Madinatii&body=Nom%3A%20'+encodeURIComponent(this.nom.value)+'%0AEmail%3A%20'+encodeURIComponent(this.email.value)+'%0AMessage%3A%20'+encodeURIComponent(this.message.value); return false;">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <a class="mailto" href="mailto:contactmadinatii@gmail.com">Ou contactez-nous directement : contactmadinatii@gmail.com</a>
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+  </div>
+</body>
+</html> 

@@ -4,20 +4,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Madinatii – لنحسن مدينتنا معا</title>
   <style>
     :root {
       /* Palette Maroc : Rouge, Vert, Blanc, Doré subtil */
-      --primary-color: #C1272D; /* Rouge marocain, inspiré du drapeau */
+      --primary-color: #B83A3E; /* Rouge marocain adouci, moins agressif */
       --accent-color: #007A3D;  /* Vert marocain, inspiré du drapeau */
       --gold-color: #C9B037;    /* Doré subtil pour les détails */
       --bg-gradient: linear-gradient(135deg, #fff 0%, #f8f8f8 100%); /* Fond très clair, sobre */
       --card-gradient: linear-gradient(135deg, #fff 70%, #f3f3f3 100%);
       --text-color: #1a1a1a;
       --muted-color: #555;
-      --shadow: 0 8px 32px rgba(193, 39, 45, 0.08); /* ombre rouge très légère */
+      --shadow: 0 8px 32px rgba(184, 58, 62, 0.08); /* ombre rouge adoucie */
     }
 
     * {
@@ -37,25 +38,17 @@
     header {
       position: relative;
       overflow: hidden;
-      /* Dégradé rouge-vert, très doux, pour rappeler le drapeau marocain */
-      background: linear-gradient(135deg, #C1272D 60%, #007A3D 100%);
+      /* Dégradé rouge-vert adouci */
+      background: linear-gradient(135deg, #B83A3E 60%, #007A3D 100%);
       color: white;
-      padding: 1.2rem 0.5rem 2rem 0.5rem;
+      padding: 0.1rem 0.3rem;
       box-shadow: var(--shadow);
-      border-bottom-left-radius: 32px;
-      border-bottom-right-radius: 32px;
+      border-radius: 0;
       text-align: center;
     }
 
     header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('https://www.mifuguemiraison.com/wp-content/uploads/2019/05/port-tanger-maroc-900x600.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.12;
-      z-index: 0;
+      display: none; /* Supprimer l'image de fond */
     }
 
     header * {
@@ -64,26 +57,25 @@
     }
 
     .logo {
-      width: 70px;
-      margin: 0 auto 0.3rem auto;
-      display: inline-block;
-      filter: drop-shadow(0 4px 16px rgba(193,39,45,0.10));
+      display: none; /* Supprimer le logo */
     }
 
     h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.3rem;
+      font-size: 1.1rem; /* Titre plus petit pour réduire la hauteur */
+      margin: 0; /* Aucune marge */
       text-align: center;
       color: #fff;
       letter-spacing: 1px;
       font-family: 'Poppins', sans-serif;
+      line-height: 1.2; /* Interligne serré */
     }
 
     #tagline {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
+      margin: 0; /* Aucune marge */
+      font-size: 1rem; /* Sous-titre plus petit */
       text-align: center;
       color: #fff;
+      line-height: 1.1; /* Interligne très serré */
     }
 
     .lang-button {
@@ -128,29 +120,49 @@
 
     .lang-button.lang-absolute {
       position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
+      top: 0.4rem; /* Position très rapprochée du bord */
+      right: 0.4rem; /* Position très rapprochée du bord */
       margin: 0;
       z-index: 10;
-      background: #fff;
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
-      border-radius: 10px;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(193,39,45,0.08);
-      transition: background 0.2s, color 0.2s;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      font-weight: 400;
+      font-size: 0.7rem; /* Taille réduite */
+      padding: 0.25rem 0.5rem; /* Padding réduit */
+      box-shadow: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
     .lang-button.lang-absolute:hover {
-      background: var(--primary-color);
+      background: rgba(255,255,255,0.25);
       color: #fff;
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .lang-button.lang-absolute:active {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .active-lang {
+      font-weight: 500;
+      color: #fff;
+      opacity: 1;
+    }
+
+    .inactive-lang {
+      font-weight: 300;
+      opacity: 0.7;
+      color: rgba(255,255,255,0.7);
     }
 
     section {
       margin: 2.5rem auto;
       max-width: 95%;
       box-shadow: var(--shadow);
-      border-radius: 28px;
+      border-radius: 12px; /* Bordures adoucies */
       background: var(--card-gradient);
       padding: 2.5rem 1.5rem;
     }
@@ -177,7 +189,7 @@
     .feature {
       padding: 1.7rem 1.2rem;
       background: #fff;
-      border-radius: 18px;
+      border-radius: 8px; /* Bordures adoucies */
       box-shadow: 0 4px 16px rgba(193,39,45,0.06);
       transition: all 0.3s cubic-bezier(.4,2,.6,1);
       border: 1px solid #f3f3f3;
@@ -215,21 +227,21 @@
     .cta button {
       display: block;
       margin: 0 auto;
-      background: linear-gradient(135deg, #C1272D, #007A3D);
+      background: linear-gradient(135deg, #B83A3E, #007A3D);
       color: white;
       border: none;
       padding: 1.1rem 2.2rem;
-      border-radius: 14px;
+      border-radius: 8px;
       font-size: 1.13rem;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       font-weight: 600;
-      box-shadow: 0 4px 16px rgba(193,39,45,0.10);
+      box-shadow: 0 4px 16px rgba(184,58,62,0.10);
     }
 
     .cta button:hover {
       transform: translateY(-3px) scale(1.04);
-      background: linear-gradient(135deg, #007A3D, #C1272D);
+      background: linear-gradient(135deg, #007A3D, #B83A3E);
     }
 
     footer {
@@ -239,9 +251,8 @@
       color: #fff;
       background: var(--primary-color);
       margin-top: 3rem;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-      box-shadow: 0 -4px 16px rgba(193,39,45,0.08);
+      border-radius: 0;
+      box-shadow: 0 -4px 16px rgba(184,58,62,0.08);
     }
 
     footer a {
@@ -267,15 +278,15 @@
     /* Styles pour mobile et responsive */
     @media (min-width: 768px) {
       header {
-        padding: 3rem 2rem 6rem 2rem;
+        padding: 2rem 2rem 3rem 2rem;
       }
       
       header h1 {
-        font-size: 4rem;
+        font-size: 5rem;
       }
       
       header p {
-        font-size: 1.5rem;
+        font-size: 3rem;
       }
       
       .logo {
@@ -324,14 +335,141 @@
       z-index: 10;
     }
     @media (max-width: 600px) {
+      header {
+        padding: 0.08rem 0.2rem; /* Padding mobile ultra-fin */
+      }
+      h1 {
+        font-size: 1rem; /* Titre mobile plus petit */
+      }
+      #tagline {
+        font-size: 2rem; /* Sous-titre mobile plus petit */
+      }
       .logo {
         width: 48px;
       }
       .lang-absolute {
-        top: 0.5rem;
-        right: 0.5rem;
-        font-size: 1rem;
-        padding: 0.5rem 1.1rem;
+        top: 0.3rem;
+        right: 0.3rem;
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+      }
+    }
+
+    /* Styles pour la carte */
+    .map-section {
+      margin: 2rem auto;
+      max-width: 95%;
+      box-shadow: var(--shadow);
+      border-radius: 12px;
+      background: var(--card-gradient);
+      padding: 2rem 1.5rem;
+    }
+    .map-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+    .map-section p {
+      font-size: 1.1rem;
+      color: var(--muted-color);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    #map {
+      height: 350px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(184,58,62,0.06);
+    }
+    .address-search {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .address-input {
+      flex: 1;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .address-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(184,58,62,0.1);
+    }
+    .search-btn {
+      background: linear-gradient(135deg, #B83A3E, #007A3D);
+      color: white;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .search-btn:hover {
+      background: linear-gradient(135deg, #007A3D, #B83A3E);
+      transform: translateY(-1px);
+    }
+    .search-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .map-legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .legend-icon {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .icon-garbage { background-color: #8B4513; }
+    .icon-pothole { background-color: #FF4500; }
+    .icon-street_light { background-color: #FFD700; }
+    .icon-parking { background-color: #4169E1; }
+    .icon-degradation { background-color: #DC143C; }
+    .icon-other { background-color: #808080; }
+    
+    @media (max-width: 768px) {
+      #map {
+        height: 300px;
+      }
+      .map-section {
+        padding: 1.5rem 1rem;
+      }
+      .address-search {
+        flex-direction: column;
+        max-width: 100%;
+        margin-bottom: 1rem;
+      }
+      .search-btn {
+        padding: 0.7rem;
+      }
+      .map-legend {
+        font-size: 0.8rem;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
       }
     }
   </style>
@@ -341,9 +479,8 @@
     <button id="lang-toggle-btn" class="lang-button lang-absolute">
       <span id="lang-ar" class="inactive-lang">العربية</span> | <span id="lang-fr" class="active-lang">Français</span>
     </button>
-    <img src="logo V1.png" alt="Logo Madinatii" class="logo">
     <h1>Madinatii</h1>
-    <p id="tagline">لنحسن مدينتنا معا – Améliorons notre ville ensemble</p>
+    <p id="tagline">Améliorons notre ville ensemble</p>
   </header>
 
   <section id="fr">
@@ -374,13 +511,58 @@
     </div>
   </section>
 
+  <section class="map-section">
+    <h2>Carte des signalements en temps réel</h2>
+    <p>Découvrez les signalements de votre ville et suivez les améliorations en cours.</p>
+    
+    <div class="address-search">
+      <input 
+        type="text" 
+        id="addressInput" 
+        class="address-input" 
+        placeholder="Rechercher une adresse (ex: Avenue Mohammed V, Rabat)"
+      >
+      <button onclick="searchAddress()" class="search-btn" id="searchBtn">
+        🔍 Rechercher
+      </button>
+    </div>
+    
+    <div id="map"></div>
+    <div class="map-legend">
+      <div class="legend-item">
+        <div class="legend-icon icon-garbage"></div>
+        <span>Poubelles</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon icon-pothole"></div>
+        <span>Nids de poule</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon icon-street_light"></div>
+        <span>Éclairage</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon icon-parking"></div>
+        <span>Stationnement</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon icon-degradation"></div>
+        <span>Dégradation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon icon-other"></div>
+        <span>Autres</span>
+      </div>
+    </div>
+  </section>
+
   <section id="ar" class="hidden ar">
     <h2>تطبيق مواطن بسيط، مفيد و ملتزم</h2>
     <p>ولِدت فكرة مدينتي من منشورات والدي على فيسبوك. عند كل مخالفة في الشارع – سيارة مركونة على الرصيف، مصباح مطفأ، نفايات مرمية – كان يلتقط صورة وينشرها، لكنها لم تؤثر. مدينتي تحول هذه الملاحظات إلى إشعارات مفيدة.</p>
 
     <div class="features">
       <div class="feature">
-        <span>��</span>
+        <span>👀</span>
         <h3>ألاحظ المشكلة</h3>
         <p>مخالفة في الشارع: وقوف، نفايات، إنارة...</p>
       </div>
@@ -405,13 +587,181 @@
   <footer>
     <p>Madinatii – Application citoyenne en cours de développement.</p>
     <nav style="margin-top:1rem;">
-      <a href="confidentialite.html" style="color:#f8fcff;text-decoration:underline;margin-right:1.5rem;">Règles de confidentialité</a>
-      <a href="conditions.html" style="color:#f8fcff;text-decoration:underline;margin-right:1.5rem;">Conditions d'utilisation</a>
-      <a href="contact.html" style="color:#f8fcff;text-decoration:underline;">Contact</a>
+      <a href="confidentialite.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Règles de confidentialité</a>
+      <a href="conditions.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Conditions d'utilisation</a>
+      <a href="contact.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Contact</a>
+      <a href="suppression.html" style="color:#fff;text-decoration:underline;">Suppression des données</a>
     </nav>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
+    // Initialisation de la carte centrée sur le Maroc
+    const map = L.map('map').setView([33.9716, -6.8498], 6);
+
+    // Ajout des tuiles OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Définition des couleurs pour chaque type
+    const typeColors = {
+      garbage: '#8B4513',
+      pothole: '#FF4500',
+      street_light: '#FFD700',
+      parking: '#4169E1',
+      degradation: '#DC143C',
+      other: '#808080'
+    };
+
+    // Définition des noms en français
+    const typeNames = {
+      garbage: 'Poubelles',
+      pothole: 'Nid de poule',
+      street_light: 'Éclairage',
+      parking: 'Stationnement',
+      degradation: 'Dégradation',
+      other: 'Autre'
+    };
+
+    // Fonction pour récupérer et afficher les signalements
+    async function loadReports() {
+      try {
+        const response = await fetch('https://zan9ati-api-production.up.railway.app/api/reports');
+        const reports = await response.json();
+        
+        reports.forEach(report => {
+          // Extraction des coordonnées (format GeoJSON: [longitude, latitude])
+          const [lng, lat] = report.location.coordinates;
+          
+          // Création du marqueur avec couleur selon le type
+          const color = typeColors[report.type] || typeColors.other;
+          const typeName = typeNames[report.type] || 'Autre';
+          
+          const marker = L.circleMarker([lat, lng], {
+            radius: 8,
+            fillColor: color,
+            color: '#fff',
+            weight: 2,
+            fillOpacity: 0.8
+          }).addTo(map);
+          
+          // Contenu du popup
+          let popupContent = `
+            <div style="font-family: Inter, sans-serif;">
+              <h4 style="color: #B83A3E; margin: 0 0 8px 0;">${typeName}</h4>
+              <p style="margin: 4px 0; font-size: 0.9rem;"><strong>Description:</strong> ${report.description}</p>
+              <p style="margin: 4px 0; font-size: 0.85rem; color: #666;"><strong>Adresse:</strong> ${report.address}</p>
+              <p style="margin: 4px 0; font-size: 0.85rem; color: #666;"><strong>Statut:</strong> ${report.status}</p>
+              <p style="margin: 4px 0; font-size: 0.85rem; color: #666;"><strong>Date:</strong> ${new Date(report.createdAt).toLocaleDateString('fr-FR')}</p>
+          `;
+          
+          if (report.votes) {
+            popupContent += `<p style="margin: 4px 0; font-size: 0.85rem; color: #007A3D;"><strong>Votes:</strong> ${report.votes.stillThere} encore là, ${report.votes.resolved} résolu</p>`;
+          }
+          
+          if (report.imageUrl) {
+            popupContent += `<img src="${report.imageUrl}" style="width: 100%; max-width: 200px; border-radius: 4px; margin-top: 8px;" alt="Image du signalement">`;
+          }
+          
+          popupContent += `</div>`;
+          
+          marker.bindPopup(popupContent, {
+            maxWidth: 250,
+            className: 'custom-popup'
+          });
+        });
+        
+        console.log(`${reports.length} signalements chargés sur la carte`);
+        
+      } catch (error) {
+        console.error('Erreur lors du chargement des signalements:', error);
+        // Affichage d'un message d'erreur sur la carte
+        L.popup()
+          .setLatLng([33.9716, -6.8498])
+          .setContent('Erreur lors du chargement des signalements. Veuillez réessayer plus tard.')
+          .openOn(map);
+      }
+    }
+
+    // Chargement des signalements au démarrage
+    loadReports();
+
+    // Variable pour stocker le marqueur de recherche
+    let searchMarker = null;
+
+    // Fonction pour rechercher une adresse
+    async function searchAddress() {
+      const address = document.getElementById('addressInput').value.trim();
+      const searchBtn = document.getElementById('searchBtn');
+      
+      if (!address) {
+        alert('Veuillez entrer une adresse');
+        return;
+      }
+      
+      // Désactiver le bouton pendant la recherche
+      searchBtn.disabled = true;
+      searchBtn.textContent = '🔍 Recherche...';
+      
+      try {
+        // Utilisation de Nominatim pour le géocodage
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address + ', Maroc')}&limit=1&addressdetails=1`
+        );
+        const results = await response.json();
+        
+        if (results.length > 0) {
+          const result = results[0];
+          const lat = parseFloat(result.lat);
+          const lng = parseFloat(result.lon);
+          
+          // Centrer la carte sur l'adresse trouvée
+          map.setView([lat, lng], 15);
+          
+          // Supprimer l'ancien marqueur de recherche s'il existe
+          if (searchMarker) {
+            map.removeLayer(searchMarker);
+          }
+          
+          // Ajouter un marqueur pour l'adresse recherchée
+          searchMarker = L.marker([lat, lng], {
+            icon: L.divIcon({
+              html: '📍',
+              iconSize: [25, 25],
+              className: 'search-marker'
+            })
+          }).addTo(map);
+          
+          // Popup avec l'adresse trouvée
+          searchMarker.bindPopup(`
+            <div style="font-family: Inter, sans-serif;">
+              <h4 style="color: #B83A3E; margin: 0 0 8px 0;">📍 Adresse recherchée</h4>
+              <p style="margin: 0; font-size: 0.9rem;">${result.display_name}</p>
+            </div>
+          `).openPopup();
+          
+        } else {
+          alert('Aucune adresse trouvée. Essayez avec une adresse plus précise.');
+        }
+        
+      } catch (error) {
+        console.error('Erreur lors de la recherche d\'adresse:', error);
+        alert('Erreur lors de la recherche. Veuillez réessayer.');
+      } finally {
+        // Réactiver le bouton
+        searchBtn.disabled = false;
+        searchBtn.textContent = '🔍 Rechercher';
+      }
+    }
+
+    // Permettre la recherche avec la touche Entrée
+    document.getElementById('addressInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchAddress();
+      }
+    });
+
     // Variable pour stocker l'état de la langue actuelle
     let currentLang = 'fr';
     

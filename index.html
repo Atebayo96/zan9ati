@@ -47,6 +47,91 @@
       text-align: center;
     }
 
+    /* Menu de navigation latéral pour les sections */
+    .page-nav {
+      position: fixed;
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 1.5rem 0;
+      box-shadow: 0 8px 32px rgba(184, 58, 62, 0.15);
+      z-index: 100;
+      max-width: 200px;
+      transition: all 0.3s ease;
+    }
+
+    .page-nav-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .page-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .page-nav li {
+      margin: 0;
+    }
+
+    .page-nav a {
+      display: block;
+      padding: 0.7rem 1.5rem;
+      color: var(--muted-color);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      position: relative;
+    }
+
+    .page-nav a:hover {
+      color: var(--primary-color);
+      background: rgba(184, 58, 62, 0.05);
+      border-left-color: rgba(184, 58, 62, 0.3);
+    }
+
+    .page-nav a.active {
+      color: var(--primary-color);
+      background: rgba(184, 58, 62, 0.1);
+      border-left-color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .page-nav a.active::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--primary-color);
+      border-radius: 50%;
+    }
+
+    /* Masquer le menu sur mobile */
+    @media (max-width: 1024px) {
+      .page-nav {
+        display: none;
+      }
+    }
+
+    /* Pas d'ajustement du contenu principal - header pleine largeur */
+
+
+
     header::before {
       display: none; /* Supprimer l'image de fond */
     }
@@ -721,7 +806,17 @@
   </style>
 </head>
 <body>
-  <header>
+  <!-- Menu de navigation des sections -->
+  <nav class="page-nav">
+    <div class="page-nav-title" data-fr="Navigation" data-ar="التنقل">Navigation</div>
+    <ul>
+      <li><a href="#about" data-fr="À propos" data-ar="من نحن">À propos</a></li>
+      <li><a href="#stats" data-fr="Statistiques" data-ar="الإحصائيات">Statistiques</a></li>
+      <li><a href="#map" data-fr="Carte" data-ar="الخريطة">Carte</a></li>
+    </ul>
+  </nav>
+
+  <header id="hero">
     <button id="lang-toggle-btn" class="lang-button lang-absolute">
       <span id="lang-ar" class="inactive-lang">العربية</span> | <span id="lang-fr" class="active-lang">Français</span>
     </button>
@@ -729,11 +824,12 @@
     <p id="tagline">Améliorons notre ville ensemble</p>
   </header>
 
-  <section id="fr">
+  <section id="about">
+  <div id="fr">
     <h2>Une application citoyenne simple, utile, engagée.</h2>
     <p>L'idée de Madinatii est née des publications Facebook de mon père. À chaque incivilité dans la rue – voiture sur le trottoir, lampadaire éteint, déchets abandonnés – il partageait une photo, mais sans effet concret. Madinatii transforme ces constats en actions utiles.</p>
 
-    <div class="features">
+    <div id="features" class="features">
       <div class="feature">
         <span>👀</span>
         <h3>Je vois un problème</h3>
@@ -755,10 +851,11 @@
       <p>Lancement été 2025 – Soyez les premiers informés</p>
       <button onclick="window.location.href='mailto:contactmadinatii@gmail.com'">Contactez-nous</button>
     </div>
+  </div>
   </section>
 
   <!-- Section Statistiques -->
-  <section class="stats-section">
+  <section id="stats" class="stats-section">
     <h2>Madinatii en chiffres</h2>
     <p>Découvrez l'impact de notre communauté citoyenne</p>
     
@@ -783,7 +880,7 @@
     </div>
   </section>
 
-  <section class="map-section">
+  <section id="map" class="map-section">
     <h2>Carte des signalements en temps réel</h2>
     <p>Découvrez les signalements de votre ville et suivez les améliorations en cours.</p>
     
@@ -856,7 +953,7 @@
     </div>
   </section>
 
-  <footer>
+  <footer id="contact-footer">
     <p>Madinatii – Application citoyenne en cours de développement.</p>
     <nav style="margin-top:1rem;">
       <a href="confidentialite.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Règles de confidentialité</a>
@@ -1230,6 +1327,84 @@
         currentLang = 'fr';
         console.log('Langue changée vers français');
       }
+      
+      // Mise à jour de la navigation
+      updatePageNavigation();
+    }
+
+    // Fonction pour mettre à jour le menu de navigation latéral
+    function updatePageNavigation() {
+      const navTitle = document.querySelector('.page-nav-title');
+      const navLinks = document.querySelectorAll('.page-nav a');
+      
+      // Mise à jour du titre
+      if (navTitle) {
+        const frText = navTitle.getAttribute('data-fr');
+        const arText = navTitle.getAttribute('data-ar');
+        if (frText && arText) {
+          navTitle.textContent = currentLang === 'fr' ? frText : arText;
+        }
+      }
+      
+      // Mise à jour des liens
+      navLinks.forEach(link => {
+        const frText = link.getAttribute('data-fr');
+        const arText = link.getAttribute('data-ar');
+        if (frText && arText) {
+          link.textContent = currentLang === 'fr' ? frText : arText;
+        }
+      });
+    }
+
+    // Navigation intelligente qui suit le scroll
+    function initScrollNavigation() {
+      const sections = document.querySelectorAll('section[id], header[id], footer[id]');
+      const navLinks = document.querySelectorAll('.page-nav a');
+      
+      // Observer pour détecter quelle section est visible
+      const observer = new IntersectionObserver((entries) => {
+        let currentSection = null;
+        let maxRatio = 0;
+        
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            currentSection = entry.target.id;
+          }
+        });
+        
+        if (currentSection) {
+          // Mettre à jour les liens actifs
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, {
+        threshold: [0.1, 0.3, 0.5, 0.7],
+        rootMargin: '-80px 0px -80px 0px'
+      });
+      
+      // Observer toutes les sections
+      sections.forEach(section => observer.observe(section));
+      
+      // Navigation fluide au clic
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
     }
     
     // Ajout de l'événement après le chargement complet de la page
@@ -1248,6 +1423,15 @@
         console.log('Événement de clic ajouté au bouton de langue');
       } else {
         console.error('Bouton de langue non trouvé dans le DOM');
+      }
+      
+      // Initialiser la navigation par scroll
+      initScrollNavigation();
+      
+      // Mettre le premier lien comme actif par défaut
+      const firstNavLink = document.querySelector('.page-nav a');
+      if (firstNavLink) {
+        firstNavLink.classList.add('active');
       }
     });
   </script>

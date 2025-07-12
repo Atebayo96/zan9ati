@@ -348,6 +348,13 @@
       background: linear-gradient(135deg, #007A3D, #B83A3E);
     }
 
+    /* Styles pour les boutons beta dans les encadrés colorés */
+    .beta-box-button:hover {
+      background: rgba(255,255,255,0.3) !important;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
     footer {
       text-align: center;
       padding: 2.2rem 1rem;
@@ -826,9 +833,10 @@
 
   <section id="about">
   <div id="fr">
-    <h2>Une application citoyenne simple, utile, engagée.</h2>
-    <p>L'idée de Madinatii est née des publications Facebook de mon père. À chaque incivilité dans la rue – voiture sur le trottoir, lampadaire éteint, déchets abandonnés – il partageait une photo, mais sans effet concret. Madinatii transforme ces constats en actions utiles.</p>
-
+    <h2>🏙️ Madinatii : L'application citoyenne qui change tout</h2>
+    <p><strong>Transformez vos constats en actions concrètes.</strong><br/>
+    Vous voyez un problème dans votre ville ? Stationnement gênant, éclairage défaillant, déchets abandonnés... Avec Madinatii, signalez-le en 30 secondes et rendez-le visible sur une carte collaborative en temps réel.</p>
+    
     <div id="features" class="features">
       <div class="feature">
         <span>👀</span>
@@ -847,42 +855,82 @@
       </div>
     </div>
 
+    <hr style="margin: 3rem 0; border: none; height: 2px; background: linear-gradient(135deg, #B83A3E, #007A3D); border-radius: 2px;">
+
+    <h2 style="margin-top: 3rem;">🎯 Beta Madinatii : Accès Exclusif</h2>
+    <p><strong>La beta de Madinatii est maintenant disponible !</strong><br/>
+    Soyez parmi les premiers à tester notre application citoyenne révolutionnaire. L'accès se fait uniquement sur invitation par email.</p>
+
+    <div style="background: linear-gradient(135deg, #B83A3E, #007A3D); color: white; padding: 2rem; border-radius: 16px; margin: 2rem 0; text-align: center; box-shadow: 0 8px 32px rgba(184,58,62,0.2);">
+      <h3 style="color: white; margin-bottom: 1rem; font-size: 1.8rem;">🚀 Comment rejoindre la Beta ?</h3>
+      <p style="color: white; font-size: 1.2rem; margin-bottom: 1.5rem;">Envoyez-nous un email et recevez votre lien d'accès privé sous 24h</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com?subject=Demande d\'accès BETA Madinatii&body=Bonjour,%0D%0A%0D%0AJe souhaite rejoindre la beta de Madinatii.%0D%0A%0D%0ANom:%0D%0AVille:%0D%0A%0D%0AMerci !'" class="beta-box-button" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 1rem 2rem; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+        ✉️ Demander mon accès BETA
+      </button>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <span>🎯</span>
+        <h3>Beta Limitée</h3>
+        <p>Accès exclusif par invitation pour tester toutes les fonctionnalités en avant-première.</p>
+      </div>
+      <div class="feature">
+        <span>📧</span>
+        <h3>Invitation par Email</h3>
+        <p>Contactez-nous par email et recevez votre lien d'accès personnel sous 24h.</p>
+      </div>
+      <div class="feature">
+        <span>🚀</span>
+        <h3>Première à Tester</h3>
+        <p>Découvrez l'application avant tout le monde et influencez son développement.</p>
+      </div>
+    </div>
+
     <div class="cta">
-      <p>Lancement été 2025 – Soyez les premiers informés</p>
-      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com'">Contactez-nous</button>
+      <p style="font-size: 1.3rem; color: var(--primary-color); font-weight: 600;">⏰ Places limitées pour la beta</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com?subject=Demande d\'accès BETA Madinatii&body=Bonjour,%0D%0A%0D%0AJe souhaite rejoindre la beta de Madinatii.%0D%0A%0D%0ANom:%0D%0AVille:%0D%0A%0D%0AMerci !'">📧 Obtenir mon accès BETA</button>
     </div>
   </div>
   </section>
 
-  <!-- Section Statistiques -->
+  <!-- Section Statistiques Beta -->
   <section id="stats" class="stats-section">
-    <h2>Madinatii en chiffres</h2>
-    <p>Découvrez l'impact de notre communauté citoyenne</p>
+    <h2>📊 Beta en chiffres</h2>
+    <p>L'impact de nos premiers beta-testeurs</p>
     
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-icon">👥</div>
+        <div class="stat-icon">🧪</div>
         <div class="stat-number" data-target="0" id="users-count">0</div>
-        <div class="stat-label">Utilisateurs inscrits</div>
+        <div class="stat-label">Beta-testeurs actifs</div>
       </div>
       
       <div class="stat-card">
         <div class="stat-icon">📋</div>
         <div class="stat-number" data-target="0" id="reports-count">0</div>
-        <div class="stat-label">Signalements</div>
+        <div class="stat-label">Signalements test</div>
       </div>
       
       <div class="stat-card">
         <div class="stat-icon">🏙️</div>
         <div class="stat-number" data-target="0" id="cities-count">0</div>
-        <div class="stat-label">Villes couvertes</div>
+        <div class="stat-label">Villes testées</div>
       </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(184,58,62,0.05); border-radius: 12px;">
+      <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Rejoignez la Beta</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--muted-color);">Testez l'application avec des vraies données et aidez-nous à l'améliorer</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com?subject=Demande d\'accès BETA Madinatii&body=Bonjour,%0D%0A%0D%0AJe souhaite rejoindre la beta de Madinatii.%0D%0A%0D%0ANom:%0D%0AVille:%0D%0A%0D%0AMerci !'" style="background: linear-gradient(135deg, #B83A3E, #007A3D); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
+        🚀 Devenir Beta-testeur
+      </button>
     </div>
   </section>
 
   <section id="map" class="map-section">
-    <h2>Carte des signalements en temps réel</h2>
-    <p>Découvrez les signalements de votre ville et suivez les améliorations en cours.</p>
+    <h2>🗺️ Carte Beta - Données de test</h2>
+    <p>Explorez les signalements réels de nos beta-testeurs. Bientôt disponible dans votre ville !</p>
     
     <div class="address-search">
       <input 
@@ -926,9 +974,10 @@
   </section>
 
   <section id="ar" class="hidden ar">
-    <h2>تطبيق مواطن بسيط، مفيد و ملتزم</h2>
-    <p>ولِدت فكرة مدينتي من منشورات والدي على فيسبوك. عند كل مخالفة في الشارع – سيارة مركونة على الرصيف، مصباح مطفأ، نفايات مرمية – كان يلتقط صورة وينشرها، لكنها لم تؤثر. مدينتي تحول هذه الملاحظات إلى إشعارات مفيدة.</p>
-
+    <h2>🏙️ مدينتي : التطبيق المواطن الذي يغير كل شيء</h2>
+    <p><strong>حوّل ملاحظاتك إلى أفعال ملموسة.</strong><br/>
+    ترى مشكلة في مدينتك؟ وقوف مزعج، إنارة معطلة، نفايات مرمية... مع مدينتي، بلّغ عنها في 30 ثانية واجعلها مرئية على خريطة تفاعلية فورية.</p>
+    
     <div class="features">
       <div class="feature">
         <span>👀</span>
@@ -947,14 +996,46 @@
       </div>
     </div>
 
+    <hr style="margin: 3rem 0; border: none; height: 2px; background: linear-gradient(135deg, #B83A3E, #007A3D); border-radius: 2px;">
+
+    <h2 style="margin-top: 3rem;">🎯 نسخة بيتا مدينتي : وصول حصري</h2>
+    <p><strong>نسخة بيتا مدينتي متاحة الآن!</strong><br/>
+    كن من الأوائل الذين يختبرون تطبيقنا المواطن الثوري. الوصول يتم فقط عن طريق الدعوة بالبريد الإلكتروني.</p>
+
+    <div style="background: linear-gradient(135deg, #B83A3E, #007A3D); color: white; padding: 2rem; border-radius: 16px; margin: 2rem 0; text-align: center; box-shadow: 0 8px 32px rgba(184,58,62,0.2);">
+      <h3 style="color: white; margin-bottom: 1rem; font-size: 1.8rem;">🚀 كيف تنضم إلى البيتا؟</h3>
+      <p style="color: white; font-size: 1.2rem; margin-bottom: 1.5rem;">أرسل لنا بريد إلكتروني واحصل على رابط الوصول الخاص بك خلال 24 ساعة</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com?subject=طلب وصول بيتا مدينتي&body=مرحبا,%0D%0A%0D%0Aأريد الانضمام إلى بيتا مدينتي.%0D%0A%0D%0Aالاسم:%0D%0Aالمدينة:%0D%0A%0D%0Aشكرا !'" class="beta-box-button" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 1rem 2rem; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+        ✉️ طلب وصول البيتا
+      </button>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <span>🎯</span>
+        <h3>بيتا محدودة</h3>
+        <p>وصول حصري بالدعوة لاختبار جميع الميزات قبل الآخرين.</p>
+      </div>
+      <div class="feature">
+        <span>📧</span>
+        <h3>دعوة بالبريد الإلكتروني</h3>
+        <p>تواصل معنا بالبريد الإلكتروني واحصل على رابط الوصول الشخصي خلال 24 ساعة.</p>
+      </div>
+      <div class="feature">
+        <span>🚀</span>
+        <h3>الأول في الاختبار</h3>
+        <p>اكتشف التطبيق قبل الجميع وأثّر على تطويره.</p>
+      </div>
+    </div>
+
     <div class="cta">
-      <p>الإطلاق صيف 2025 – كن أول من يعلم</p>
-      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com'">تواصل معنا</button>
+      <p style="font-size: 1.3rem; color: var(--primary-color); font-weight: 600;">⏰ أماكن محدودة للبيتا</p>
+      <button onclick="window.location.href='mailto:contactmadinatii@gmail.com?subject=طلب وصول بيتا مدينتي&body=مرحبا,%0D%0A%0D%0Aأريد الانضمام إلى بيتا مدينتي.%0D%0A%0D%0Aالاسم:%0D%0Aالمدينة:%0D%0A%0D%0Aشكرا !'">📧 الحصول على وصول البيتا</button>
     </div>
   </section>
 
   <footer id="contact-footer">
-    <p>Madinatii – Application citoyenne en cours de développement.</p>
+    <p>🚀 Madinatii BETA – Accès exclusif par invitation | <a href="mailto:contactmadinatii@gmail.com" style="color: var(--gold-color); font-weight: bold;">Demander votre accès</a></p>
     <nav style="margin-top:1rem;">
       <a href="confidentialite.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Règles de confidentialité</a>
       <a href="conditions.html" style="color:#fff;text-decoration:underline;margin-right:1.5rem;">Conditions d'utilisation</a>
